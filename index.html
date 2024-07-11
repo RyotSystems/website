@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryot Systems</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(241, 241, 241);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            transition: height 0.3s ease, padding 0.3s ease;
+            z-index: 1000; /* Ensure header is on top */
+        }
+
+        .header.shrink {
+            height: 60px;
+            padding: 5px;
+        }
+
+        .logo-container {
+            position: relative;
+        }
+
+        .logo {
+            height: 120px;
+            transition: height 0.3s ease;
+        }
+
+        .logo.invert {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none; /* Nascondi inizialmente il logo invertito */
+            filter: invert(1);
+        }
+
+        .header.shrink .logo {
+            height: 80px;
+        }
+
+        .header.shrink .logo.invert {
+            height: 80px;
+        }
+
+        .nav {
+            margin-left: 20px;
+            margin-right: 30px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav .card {
+            display: flex;
+            width: 100%;
+            margin-left: 10px;
+            border-radius: 10px;
+            padding: 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .nav .card a {
+            text-decoration: none;
+            color: #333;
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav .card a:last-child {
+            border-right: none;
+        }
+
+        .nav .card a:hover {
+            background-color: #ffffff;
+        }
+
+        .content {
+            margin-top: 120px; /* Height of header plus some margin */
+        }
+
+        .testata-container {
+            background-color: #252525; /* Sfondo nero */
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+            padding-bottom: 180px;
+        }
+
+        .testata h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            margin-top: 20px;
+        }
+
+        .btn-anim a {
+            color: white;
+            background-color: #3a9ed8;
+            padding: 10px 20px;
+            text-decoration: none;
+            color:#ffffffc2;
+            border-radius: 5px;
+        }
+
+        .trust-box {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .trust-box img {
+            width: 100px;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Carousel Styles */
+        .carousel-section {
+            display: flex;
+            align-items: flex-start;
+            align-items: center;
+            padding-top: 40px; /* Added space between sections */
+            padding-left: 20px;
+        }
+
+        .carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            width: 65%; /* Set carousel width to 65% */
+            margin-left: 40px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            height: 45vw; /* Set the height to 40% of the viewport width */
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-item {
+            flex: 0 0 40%; /* Made cards less wide */
+            scroll-snap-align: start;
+            margin-right: 15px; /* Reduced margin between items */
+            margin-left: 15px;  /* Reduced margin between items */
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%; /* Make buttons round */
+            height:40px;
+            width:40px;
+        }
+
+        .carousel-button.prev {
+            left: 0;
+        }
+
+        .carousel-button.next {
+            right: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="header" id="header">
+    <div class="logo-container">
+        <img src="images/logoM.png" alt="Logo" class="logo" id="logo">
+        <img src="images/logoM.png" alt="Logo" class="logo invert" id="logo-invert">
+    </div>
+    <div class="nav">
+        <div class="card">
+            <a href="#">Home</a>
+            <a href="#">Vetrina</a>
+            <a href="#">Software su misura</a>
+            <a href="#">Chi siamo</a>
+            <a href="#">Contatti</a>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="testata-container">
+        <div class="testata">
+            <h1>Anni di esperienza nello sviluppo di Software<br> 
+                <span class="rotating-words" data-rotate-words="fiscali, sanitari, di censimento, di automazione, per CAF"> MES
+                <span class="cursor">|</span></span> su misura
+            </h1>
+            <p>qui dobbiamo inventarci qualcosaltro da scrivere di abbastanza lungo tipo descrizione di quello che facciamo e chi siamo</p>
+            <p>possibilmente circa 3 rihe sjlfhweuhfwfg uiasgfhksabhfo weauifgòbvusdvsef dbhas vdfw hdf weqk</p>
+            <p>werjksdh wdqjhjgd hjscva cavs qbnsa hd au sjlfhweuhfwfg uiasgfhksabhfo weauifgòbvu</p>
+            <div class="cta-button btn-anim">
+                <a href="#">Contattaci</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel-section">
+        <h2 style="text-align:center; width: 35%;">Scopri i nostri software più apprezzati</h2>
+        <div class="carousel-container">
+            <button class="carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
+            <div class="carousel" id="carousel">
+                <div class="carousel-item">Placeholder 1</div>
+                <div class="carousel-item">Placeholder 2</div>
+                <div class="carousel-item">Placeholder 3</div>
+                <div class="carousel-item">Placeholder 4</div>
+            </div>
+            <button class="carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onscroll = function() {
+        const header = document.getElementById('header');
+        const logo = document.getElementById('logo');
+        const logoInvert = document.getElementById('logo-invert');
+        const testata = document.querySelector('.testata-container');
+        const testataTop = testata.offsetTop;
+        const testataBottom = testataTop + testata.offsetHeight;
+        const logoHeight = logo.offsetHeight;
+
+        if (window.pageYOffset > 50) {
+            header.classList.add('shrink');
+        } else {
+            header.classList.remove('shrink');
+        }
+
+        const logoBottom = window.pageYOffset + logoHeight;
+
+        if (logoBottom > testataTop && window.pageYOffset < testataBottom) {
+            logoInvert.style.display = 'block';
+            logoInvert.style.clip = `rect(${Math.max(0, testataTop - window.pageYOffset)}px, auto, ${Math.min(logoHeight, testataBottom - window.pageYOffset)}px, 0)`;
+        } else {
+            logoInvert.style.display = 'none';
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var span = document.querySelector('span[data-rotate-words]');
+        var words = span.getAttribute('data-rotate-words').split(', ');
+        var currentWordIndex = 0;
+        var currentLetterIndex = 0;
+        var interval;
+
+        function rotateWords() {
+            var currentWord = words[currentWordIndex];
+            var currentLetter = currentWord[currentLetterIndex];
+            var text = currentWord.substring(0, currentLetterIndex + 1);
+
+            span.innerHTML = text + '<span class="cursor">|</span>';
+
+            currentLetterIndex++;
+
+            if (currentLetterIndex === currentWord.length) {
+                clearInterval(interval);
+                setTimeout(function() {
+                    interval = setInterval(deleteLetter, 80);
+                }, 500);
+            }
+        }
+
+        function deleteLetter() {
+            var currentWord = words[currentWordIndex];
+            var text = currentWord.substring(0, currentLetterIndex);
+
+            span.innerHTML = text + '<span class="cursor">|</span>';
+
+            currentLetterIndex--;
+
+            if (currentLetterIndex < 0) {
+                clearInterval(interval);
+                currentWordIndex = (currentWordIndex + 1) % words.length;
+                interval = setInterval(rotateWords, 130);
+            }
+        }
+
+        interval = setInterval(rotateWords, 100);
+    });
+
+    function scrollCarousel(direction) {
+        const carousel = document.getElementById('carousel');
+        const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
+        carousel.scrollBy({ left: direction * (itemWidth + 30) * 2, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
