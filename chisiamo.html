@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryot Systems - Chi Siamo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f3f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            margin-top: 130px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        .about-section {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            margin: 10px;
+        }
+        .about-section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .team {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            flex: 1;
+            padding-top: 0;
+        }
+        .team h2 {
+            font-size: 28px;
+            color: #333;
+        }
+        .team-members {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .team-member {
+            text-align: center;
+            width: 300px;
+        }
+        .team-member img {
+            width: 200px;
+            border-radius: 7%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .team-member h3 {
+            font-size: 22px;
+            color: #333;
+        }
+        .team-member p {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+        }
+        .content h1 {
+            width: 100%;
+            text-align: center;
+            font-size: 36px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="content">
+        <h1>Chi Siamo</h1>
+        <div class="about-section">
+            <p>Siamo una startup di sviluppo software fondata da due giovani ragazzi con il desiderio di mettersi in proprio e di fornire soluzioni innovative alle aziende. La nostra missione è risolvere i problemi digitali e di transizione tecnologica che spesso affliggono le imprese, rendendo più efficiente la loro operatività.</p>
+            <p>Nonostante la recente costituzione, vantiamo un'esperienza pluriennale nel settore. Abbiamo già collaborato con grandi realtà come Avis e SalusVeneto, oltre a supportare diverse piccole e medie imprese.</p>
+            <p>Ciò che ci contraddistingue dagli altri è la nostra capacità di combinare efficienti programmi informatici con la costruzione di sistemi e componenti hardware ottimizzati per svolgere qualsiasi mansione: dalla scansione di documenti e caricamento dei dati automatico nel PC alla creazione di timbratori per le presenze con gestionale sincronizzato.</p>
+            <p>Noi di RYOT poniamo una grande attenzione ai dati sensibili degli utenti e garantiamo la massima trasparenza nel trattamento di essi. Inoltre, manteniamo una costante comunicazione con il cliente specialmente nelle fasi dello sviluppo del progetto, in modo da ottenere il risultato finale più soddisfacente.</p>
+        </div>
+
+        <div class="team">
+            <h2>Il nostro team</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="images/Riccardo.jpg" alt="Membro del Team">
+                    <h3>Riccardo Luigi Scandurra</h3>
+                    <p>Founder</p>
+                    <p>head of software development</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/Yari.jpg" alt="Membro del Team">
+                    <h3>Yari Sperandio</h3>
+                    <p>Co-founder</p>
+                    <p>head of design & comunication</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carica l'header
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    // Carica il CSS dell'header dopo aver inserito l'HTML
+                    const headerStyle = document.createElement('link');
+                    headerStyle.rel = 'stylesheet';
+                    headerStyle.href = 'header.css';
+                    document.head.appendChild(headerStyle);
+                    initializeHeader();
+                })
+                .catch(error => console.error('Errore nel caricamento dell\'header:', error));
+
+            // Carica il footer
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                    // Carica il CSS del footer dopo aver inserito l'HTML
+                    const footerStyle = document.createElement('link');
+                    footerStyle.rel = 'stylesheet';
+                    footerStyle.href = 'footer.css';
+                    document.head.appendChild(footerStyle);
+                })
+                .catch(error => console.error('Errore nel caricamento del footer:', error));
+
+            // Funzione per inizializzare l'header dopo il caricamento
+            function initializeHeader() {
+                const header = document.getElementById('header');
+                const logo = document.getElementById('logo');
+                const logoInvert = document.getElementById('logo-invert');
+                const fixedBackground = document.getElementById('fixed-background');
+                const hamburgerMenu = document.getElementById('hamburger-menu');
+                const nav = document.getElementById('nav');
+
+                hamburgerMenu.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+                window.addEventListener('scroll', () => {
+                    const currentScrollY = window.scrollY;
+                    const newHeight = Math.max(70, 125 - currentScrollY);
+                    header.style.height = newHeight + 'px';
+
+                    const headerRect = header.getBoundingClientRect();
+
+                    if (headerRect.bottom <= 71) {
+                        fixedBackground.style.visibility = 'visible';
+                        logoInvert.style.clipPath = 'inset(0 0 0 0)';
+                    } else {
+                        fixedBackground.style.visibility = 'hidden';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

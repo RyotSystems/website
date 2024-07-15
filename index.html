@@ -9,132 +9,87 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: rgb(241, 241, 241);
+            background-color: #f2f3f5;
         }
-
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            transition: height 0.3s ease, padding 0.3s ease;
-            z-index: 1000; /* Ensure header is on top */
-        }
-
-        .header.shrink {
-            height: 60px;
-            padding: 5px;
-        }
-
-        .logo-container {
-            position: relative;
-        }
-
-        .logo {
-            height: 120px;
-            transition: height 0.3s ease;
-        }
-
-        .logo.invert {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: none; /* Nascondi inizialmente il logo invertito */
-            filter: invert(1);
-        }
-
-        .header.shrink .logo {
-            height: 80px;
-        }
-
-        .header.shrink .logo.invert {
-            height: 80px;
-        }
-
-        .nav {
-            margin-left: 20px;
-            margin-right: 30px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav .card {
-            display: flex;
-            width: 100%;
-            margin-left: 10px;
-            border-radius: 10px;
-            padding: 0;
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .nav .card a {
-            text-decoration: none;
-            color: #333;
-            flex: 1;
-            padding: 20px;
-            text-align: center;
-            border-right: 1px solid #ffffff;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav .card a:last-child {
-            border-right: none;
-        }
-
-        .nav .card a:hover {
-            background-color: #ffffff;
-        }
-
         .content {
-            margin-top: 120px; /* Height of header plus some margin */
+            margin-top: 0px; /* Margin to make space for the fixed header */
         }
-
+        .header-space {
+            height: 130px; 
+        }
         .testata-container {
-            background-color: #252525; /* Sfondo nero */
-            color: white;
             text-align: center;
             padding-top: 100px;
             padding-bottom: 180px;
+            padding-left: 30px;
+            padding-right: 30px;
+            position: relative;
+            z-index: 1;
         }
-
+        .testata-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #252525;
+            border-top: 5px solid #397fff;
+            border-bottom: 5px solid #397fff;
+            z-index: -1;
+        }
+        .fixed-background {
+            position: fixed;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 71px;
+            background-color: #252525;
+            border-bottom: 5px solid #397fff;
+            z-index: 10;
+            visibility: hidden;
+        }
         .testata h1 {
             font-size: 36px;
             margin-bottom: 20px;
+            color: white;
         }
-
+        .testata p {
+            font-size: 25px;
+            color: white;
+        }
+        .rotating-words {
+            color: #54c0ff;
+        }
         .cta-button {
             margin-top: 20px;
         }
-
         .btn-anim a {
-            color: white;
-            background-color: #3a9ed8;
+            background-image: linear-gradient(to bottom right, #397fff, #9edbff);
             padding: 10px 20px;
             text-decoration: none;
-            color:#ffffffc2;
+            font-size: 22px;
+            color: #ffffff;
             border-radius: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease, background-position 0.3s ease;
+            background-size: 200%;
+            background-position: left top;
         }
-
+        .btn-anim a:hover {
+            transform: scale(1.1);
+            background-position: right bottom;
+        }
         .trust-box {
             margin-top: 20px;
             text-align: left;
             display: inline-block;
         }
-
         .trust-box img {
             width: 100px;
         }
-
         .cursor {
             animation: blink 1s infinite;
         }
-
         @keyframes blink {
             0%, 100% {
                 opacity: 0;
@@ -143,52 +98,62 @@
                 opacity: 1;
             }
         }
-
-        /* Carousel Styles */
         .carousel-section {
             display: flex;
-            align-items: flex-start;
             align-items: center;
-            padding-top: 40px; /* Added space between sections */
+            padding-top: 10px;
             padding-left: 20px;
         }
-
         .carousel-container {
             position: relative;
             display: flex;
             align-items: center;
             overflow: hidden;
-            width: 65%; /* Set carousel width to 65% */
+            width: 65%;
             margin-left: 40px;
-            margin-top: 20px;
-            margin-bottom: 60px;
+            margin-top: 0px;
+            margin-bottom: 0px;
         }
-
         .carousel {
             display: flex;
             overflow-x: scroll;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             width: 100%;
-            height: 45vw; /* Set the height to 40% of the viewport width */
+            height: 45vw;
+            max-height: 95vh;
         }
-
         .carousel::-webkit-scrollbar {
             display: none;
         }
-
-        .carousel-item {
-            flex: 0 0 40%; /* Made cards less wide */
-            scroll-snap-align: start;
-            margin-right: 15px; /* Reduced margin between items */
-            margin-left: 15px;  /* Reduced margin between items */
-            background-color: #f8f9fa;
-            border-radius: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .testo-carosello {
             text-align: center;
-            padding: 20px;
+            width: 35%;
+            color: #000000;
+            font-size: 30px;
         }
-
+        .carousel-item {
+            flex: 0 0 40%;
+            scroll-snap-align: start;
+            margin-right: 15px;
+            margin-left: 25px;
+            margin-bottom: 60px;
+            margin-top: 60px;
+            background-color: white;
+            border-radius: 20px;
+            text-align: center;
+            padding: 0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .carousel-item:hover {
+            transform: scale(1.05);
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         .carousel-button {
             position: absolute;
             top: 50%;
@@ -198,144 +163,484 @@
             border: none;
             padding: 10px;
             cursor: pointer;
-            border-radius: 50%; /* Make buttons round */
-            height:40px;
-            width:40px;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            z-index: 1;
         }
-
         .carousel-button.prev {
             left: 0;
         }
-
         .carousel-button.next {
             right: 0;
         }
+        .small-carousel-section {
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-left: 20px;
+            background-color: #ffffff;
+        }
+        .small-carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            width: 65%;
+            margin-left: 40px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+        }
+        .small-carousel {
+            display: flex;
+            overflow: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            height: 15vw;
+            position: relative;
+        }
+        .small-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .testo-small-carosello {
+            text-align: center;
+            width: 35%;
+            color: #000000;
+            font-size: 20px;
+        }
+        .small-carousel-item {
+            flex: 0 0 25%;
+            scroll-snap-align: start;
+            margin-right: 10px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .small-carousel-item img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+        .small-carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            z-index: 1;
+        }
+        .small-carousel-button.prev {
+            left: -40px;
+        }
+        .small-carousel-button.next {
+            right: -40px;
+        }
+
+
+
+@media (max-width: 768px) {
+    .testata h1 {
+        font-size: 26px;
+    }
+    .testata p {
+        font-size: 17px;
+        margin-top: 40px;
+    }
+    .testata-container {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    .header-space {
+            height: 125px;
+            background-color: #252525;
+    }
+    .carousel-section {
+        display: contents;
+    }
+
+
+    .carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            width: 100%;
+            margin-left: 0px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            height: 75vh;
+            max-height: 95vh;
+            margin-left: 20px;
+        }
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .testo-carosello {
+            text-align: center;
+            width: 100%;
+            color: #000000;
+            font-size: 25px;
+            margin-top: 50px;
+        }
+        .testo-carosello h2 {
+            margin: 30px;
+            font-size: 40px;
+        }
+        .carousel-item {
+            flex: 0 0 85%;
+            background-color: white;
+            border-radius: 20px;
+            text-align: center;
+            padding: 0;
+        }
+        .carousel-button {
+            display: none;
+        }
+
+
+
+        .small-carousel-section {
+            display: contents;
+            align-items: center;
+        }
+        .small-carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            width: 100%;
+            margin-left: 0px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+        }
+        .small-carousel {
+            display: flex;
+            overflow: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            height: 35vw;
+            position: relative;
+        }
+        .small-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .testo-small-carosello {
+            text-align: center;
+            width: 35%;
+            color: #000000;
+            font-size: 20px;
+        }
+        .small-carousel-item {
+            flex: 0 0 35%;
+            scroll-snap-align: start;
+            margin-right: 10px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+
+}
+
 
     </style>
 </head>
 <body>
+    <div id="header-container"></div>
 
-<div class="header" id="header">
-    <div class="logo-container">
-        <img src="images/logoM.png" alt="Logo" class="logo" id="logo">
-        <img src="images/logoM.png" alt="Logo" class="logo invert" id="logo-invert">
-    </div>
-    <div class="nav">
-        <div class="card">
-            <a href="#">Home</a>
-            <a href="#">Vetrina</a>
-            <a href="#">Software su misura</a>
-            <a href="#">Chi siamo</a>
-            <a href="#">Contatti</a>
+    <div class="content">
+        <div class="header-space"></div>
+
+        <div class="testata-container">
+            <div class="testata-background" id="testata-background"></div>
+            <div class="testata">
+                <h1>Anni di esperienza nello sviluppo di Software<br> 
+                    <span class="rotating-words" data-rotate-words="fiscali, sanitari, di censimento, di automazione, per CAF"> MES
+                    <span class="cursor">|</span></span> su misura
+                </h1>
+                <p>Trasformiamo le idee in realtà digitali con soluzioni software innovative e su misura</p>
+                <p>Siamo una startup dinamica e in crescita, dedicata a offrire ai nostri clienti prodotti di alta qualità che rispondano perfettamente alle loro esigenze</p>
+                <p>La nostra missione è costruire software che non solo risolva problemi, ma che offra un'esperienza utente eccellente e duratura</p>
+                <div class="cta-button btn-anim">
+                    <a href="contatti.html">Contattaci</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="content">
-    <div class="testata-container">
-        <div class="testata">
-            <h1>Anni di esperienza nello sviluppo di Software<br> 
-                <span class="rotating-words" data-rotate-words="fiscali, sanitari, di censimento, di automazione, per CAF"> MES
-                <span class="cursor">|</span></span> su misura
-            </h1>
-            <p>qui dobbiamo inventarci qualcosaltro da scrivere di abbastanza lungo tipo descrizione di quello che facciamo e chi siamo</p>
-            <p>possibilmente circa 3 rihe sjlfhweuhfwfg uiasgfhksabhfo weauifgòbvusdvsef dbhas vdfw hdf weqk</p>
-            <p>werjksdh wdqjhjgd hjscva cavs qbnsa hd au sjlfhweuhfwfg uiasgfhksabhfo weauifgòbvu</p>
-            <div class="cta-button btn-anim">
-                <a href="#">Contattaci</a>
+        <div class="fixed-background" id="fixed-background">
+            <img src="images/logoM.png" alt="Logo" class="logo invert" id="fixed-logo">
+        </div>
+
+        <div class="carousel-section">
+            <h2 class="testo-carosello">Scopri i nostri software più apprezzati</h2>
+            <div class="carousel-container">
+                <button class="carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
+                <div class="carousel" id="carousel">
+                    <div class="carousel-item" onclick="window.location.href='#'"><img src="/carosello/1.png" alt="Immagine 1"></div>
+                    <div class="carousel-item" onclick="window.location.href='#'"><img src="/carosello/2.png" alt="Immagine 2"></div>
+                    <div class="carousel-item" onclick="window.location.href='#'"><img src="/carosello/3.png" alt="Immagine 3"></div>
+                </div>
+                <button class="carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
+            </div>
+        </div>
+
+        <div class="small-carousel-section">
+            <h2 class="testo-carosello">Hanno scelto i nostri software</h2>
+            <div class="small-carousel-container">
+                <button class="small-carousel-button prev" onclick="manualScrollSmallCarousel(-1)">&#10094;</button>
+                <div class="small-carousel" id="small-carousel">
+                    <div class="small-carousel-item"><img src="loghi/logo1.png" alt="Logo 1"></div>
+                    <div class="small-carousel-item"><img src="loghi/logo2.png" alt="Logo 2"></div>
+                    <div class="small-carousel-item"><img src="loghi/logo3.png" alt="Logo 3"></div>
+                    <div class="small-carousel-item"><img src="loghi/logo4.png" alt="Logo 4"></div>
+                    <div class="small-carousel-item"><img src="loghi/logo5.png" alt="Logo 5"></div>
+                </div>
+                <button class="small-carousel-button next" onclick="manualScrollSmallCarousel(1)">&#10094;</button>
             </div>
         </div>
     </div>
 
-    <div class="carousel-section">
-        <h2 style="text-align:center; width: 35%;">Scopri i nostri software più apprezzati</h2>
-        <div class="carousel-container">
-            <button class="carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
-            <div class="carousel" id="carousel">
-                <div class="carousel-item">Placeholder 1</div>
-                <div class="carousel-item">Placeholder 2</div>
-                <div class="carousel-item">Placeholder 3</div>
-                <div class="carousel-item">Placeholder 4</div>
-            </div>
-            <button class="carousel-button next" onclick="scrollCarousel(1)">&#10095;</button>
-        </div>
-    </div>
-</div>
+    <div id="footer"></div>
 
-<script>
-    window.onscroll = function() {
-        const header = document.getElementById('header');
-        const logo = document.getElementById('logo');
-        const logoInvert = document.getElementById('logo-invert');
-        const testata = document.querySelector('.testata-container');
-        const testataTop = testata.offsetTop;
-        const testataBottom = testataTop + testata.offsetHeight;
-        const logoHeight = logo.offsetHeight;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Funzione per caricare il footer
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    // Carica il CSS dell'header dopo aver inserito l'HTML
+                    const headerStyle = document.createElement('link');
+                    headerStyle.rel = 'stylesheet';
+                    headerStyle.href = 'header.css';
+                    document.head.appendChild(headerStyle);
 
-        if (window.pageYOffset > 50) {
-            header.classList.add('shrink');
-        } else {
-            header.classList.remove('shrink');
-        }
+                    initializeHeader();
+                })
+                .catch(error => console.error('Errore nel caricamento dell\'header:', error));
 
-        const logoBottom = window.pageYOffset + logoHeight;
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                    // Carica il CSS del footer dopo aver inserito l'HTML
+                    const footerStyle = document.createElement('link');
+                    footerStyle.rel = 'stylesheet';
+                    footerStyle.href = 'footer.css';
+                    document.head.appendChild(footerStyle);
+                })
+                .catch(error => console.error('Errore nel caricamento del footer:', error));
 
-        if (logoBottom > testataTop && window.pageYOffset < testataBottom) {
-            logoInvert.style.display = 'block';
-            logoInvert.style.clip = `rect(${Math.max(0, testataTop - window.pageYOffset)}px, auto, ${Math.min(logoHeight, testataBottom - window.pageYOffset)}px, 0)`;
-        } else {
-            logoInvert.style.display = 'none';
-        }
-    };
+            // Funzioni di inizializzazione
+            function initializeHeader() {
+                const header = document.getElementById('header');
+                const logo = document.getElementById('logo');
+                const logoInvert = document.getElementById('logo-invert');
+                const testata = document.querySelector('.testata-container');
+                const fixedBackground = document.getElementById('fixed-background');
+                const testataBackground = document.getElementById('testata-background');
+                const carousel = document.getElementById('carousel');
+                const smallCarousel = document.getElementById('small-carousel');
+                let autoScrollInterval;
+                let autoScrollTimeout;
+                let isScrolling = false;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var span = document.querySelector('span[data-rotate-words]');
-        var words = span.getAttribute('data-rotate-words').split(', ');
-        var currentWordIndex = 0;
-        var currentLetterIndex = 0;
-        var interval;
+                function scrollCarousel(direction) {
+                    const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
+                    const scrollAmount = direction === 1 ? carousel.scrollWidth - carousel.clientWidth : 0;
+                    let scrollPos = direction === 1 ? 0 : carousel.scrollWidth - carousel.clientWidth;
 
-        function rotateWords() {
-            var currentWord = words[currentWordIndex];
-            var currentLetter = currentWord[currentLetterIndex];
-            var text = currentWord.substring(0, currentLetterIndex + 1);
+                    function scroll() {
+                        if (direction === 1 && scrollPos < scrollAmount) {
+                            scrollPos += itemWidth;
+                            carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
+                            requestAnimationFrame(scroll);
+                        } else if (direction === -1 && scrollPos > scrollAmount) {
+                            scrollPos -= itemWidth;
+                            carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+                            requestAnimationFrame(scroll);
+                        }
+                    }
 
-            span.innerHTML = text + '<span class="cursor">|</span>';
+                    scroll();
+                }
 
-            currentLetterIndex++;
 
-            if (currentLetterIndex === currentWord.length) {
-                clearInterval(interval);
-                setTimeout(function() {
-                    interval = setInterval(deleteLetter, 80);
-                }, 500);
+
+                const hamburgerMenu = document.getElementById('hamburger-menu');
+                const nav = document.getElementById('nav');
+
+                hamburgerMenu.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+
+
+
+
+                function cloneFirstToEnd(container) {
+                    const firstChild = container.children[0];
+                    const clone = firstChild.cloneNode(true);
+                    container.appendChild(clone);
+                    container.removeChild(firstChild);
+                    container.scrollBy({ left: -firstChild.offsetWidth, behavior: 'instant' });
+                }
+
+                function scrollSmallCarousel(direction) {
+                    if (isScrolling) return;
+                    isScrolling = true;
+
+                    const itemWidth = smallCarousel.querySelector('.small-carousel-item').offsetWidth;
+                    smallCarousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
+
+                    setTimeout(() => {
+                        if (direction === 1) {
+                            cloneFirstToEnd(smallCarousel);
+                        } else {
+                            const lastChild = smallCarousel.children[smallCarousel.children.length - 1];
+                            const clone = lastChild.cloneNode(true);
+                            smallCarousel.insertBefore(clone, smallCarousel.firstChild);
+                            smallCarousel.removeChild(lastChild);
+                            smallCarousel.scrollBy({ left: -itemWidth, behavior: 'instant' });
+                        }
+                        isScrolling = false;
+                    }, 600);
+                }
+
+                function autoScrollSmallCarousel() {
+                    scrollSmallCarousel(1);
+                }
+
+                function startAutoScroll() {
+                    autoScrollInterval = setInterval(autoScrollSmallCarousel, 3000);
+                }
+
+                function stopAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                }
+
+                function resetAutoScroll() {
+                    stopAutoScroll();
+                    clearTimeout(autoScrollTimeout);
+                    autoScrollTimeout = setTimeout(startAutoScroll, 8000);
+                }
+
+                function manualScrollSmallCarousel(direction) {
+                    stopAutoScroll();
+                    scrollSmallCarousel(direction);
+                    resetAutoScroll();
+                }
+
+                startAutoScroll();
+
+                window.addEventListener('scroll', () => {
+                    const currentScrollY = window.scrollY;
+                    const newHeight = Math.max(70, 125 - currentScrollY);
+                    header.style.height = newHeight + 'px';
+
+                    const headerRect = header.getBoundingClientRect();
+                    const testataRect = testata.getBoundingClientRect();
+
+                    if (headerRect.bottom > testataRect.top && headerRect.top < testataRect.bottom) {
+                        const overlapTop = Math.max(0, testataRect.top - headerRect.top);
+                        const overlapBottom = Math.max(0, headerRect.bottom - testataRect.bottom);
+                        logoInvert.style.clipPath = `inset(${overlapTop}px 0 ${overlapBottom}px 0)`;
+                    } else if (testataRect.bottom > 71) {
+                        logoInvert.style.clipPath = 'inset(0 0 100% 0)';
+                    }
+
+                    if (testataRect.bottom <= 71) {
+                        fixedBackground.style.visibility = 'visible';
+                        logoInvert.style.clipPath = 'inset(0 0 0 0)';
+                    } else {
+                        fixedBackground.style.visibility = 'hidden';
+                    }
+                });
+
+                document.querySelector('.carousel-button.prev').addEventListener('click', () => {
+                    scrollCarousel(-1);
+                });
+
+                document.querySelector('.carousel-button.next').addEventListener('click', () => {
+                    scrollCarousel(1);
+                });
+
+                document.querySelector('.small-carousel-button.prev').addEventListener('click', () => {
+                    manualScrollSmallCarousel(-1);
+                });
+
+                document.querySelector('.small-carousel-button.next').addEventListener('click', () => {
+                    manualScrollSmallCarousel(1);
+                });
+
+                var span = document.querySelector('span[data-rotate-words]');
+                var words = span.getAttribute('data-rotate-words').split(', ');
+                var currentWordIndex = 0;
+                var currentLetterIndex = 0;
+                var interval;
+
+                function rotateWords() {
+                    var currentWord = words[currentWordIndex];
+                    var currentLetter = currentWord[currentLetterIndex];
+                    var text = currentWord.substring(0, currentLetterIndex + 1);
+
+                    span.innerHTML = text + '<span class="cursor">|</span>';
+
+                    currentLetterIndex++;
+
+                    if (currentLetterIndex === currentWord.length) {
+                        clearInterval(interval);
+                        setTimeout(function() {
+                            interval = setInterval(deleteLetter, 80);
+                        }, 500);
+                    }
+                }
+
+                function deleteLetter() {
+                    var currentWord = words[currentWordIndex];
+                    var text = currentWord.substring(0, currentLetterIndex);
+
+                    span.innerHTML = text + '<span class="cursor">|</span>';
+
+                    currentLetterIndex--;
+
+                    if (currentLetterIndex < 0) {
+                        clearInterval(interval);
+                        currentWordIndex = (currentWordIndex + 1) % words.length;
+                        interval = setInterval(rotateWords, 130);
+                    }
+                }
+
+                interval = setInterval(rotateWords, 100);
             }
-        }
 
-        function deleteLetter() {
-            var currentWord = words[currentWordIndex];
-            var text = currentWord.substring(0, currentLetterIndex);
+            
+        });
 
-            span.innerHTML = text + '<span class="cursor">|</span>';
-
-            currentLetterIndex--;
-
-            if (currentLetterIndex < 0) {
-                clearInterval(interval);
-                currentWordIndex = (currentWordIndex + 1) % words.length;
-                interval = setInterval(rotateWords, 130);
-            }
-        }
-
-        interval = setInterval(rotateWords, 100);
-    });
-
-    function scrollCarousel(direction) {
-        const carousel = document.getElementById('carousel');
-        const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-        carousel.scrollBy({ left: direction * (itemWidth + 30) * 2, behavior: 'smooth' });
-    }
-</script>
-
+    </script>
 </body>
 </html>

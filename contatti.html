@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryot Systems - Contatti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f3f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            margin-top: 130px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+        }
+        .content h1 {
+            font-size: 36px;
+            color: #333;
+        }
+        .content p {
+            font-size: 18px;
+            color: #555;
+        }
+        .content a {
+            font-size: 18px;
+            color: #3f3f3f;
+        }
+        .contacts {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contacts0 {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            margin: 20px;
+            text-align: center;
+        }
+        .contact-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="content">
+        <h1>Contattaci</h1>
+        <p>Contattaci come preferisci:</p>
+        <div class="contacts0">
+            <div class="contact-item">
+                <img src="icons/phone.png" alt="Telefono">
+                <p><a href="tel:+393519232469">+39 3519232469</a></p>
+            </div>
+            <div class="contact-item">
+                <img src="icons/email.png" alt="Email">
+                <p><a href="mailto:info@ryotsystems.it">info@ryotsystems.it</a></p>
+            </div>
+            <div class="contact-item">
+                <img src="icons/whatsapp.png" alt="WhatsApp">
+                <p><a href="https://wa.me/393519232469" target="_blank">Apri su WhatsApp</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carica l'header
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    // Carica il CSS dell'header dopo aver inserito l'HTML
+                    const headerStyle = document.createElement('link');
+                    headerStyle.rel = 'stylesheet';
+                    headerStyle.href = 'header.css';
+                    document.head.appendChild(headerStyle);
+                    initializeHeader();
+                })
+                .catch(error => console.error('Errore nel caricamento dell\'header:', error));
+
+            // Carica il footer
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                    // Carica il CSS del footer dopo aver inserito l'HTML
+                    const footerStyle = document.createElement('link');
+                    footerStyle.rel = 'stylesheet';
+                    footerStyle.href = 'footer.css';
+                    document.head.appendChild(footerStyle);
+                })
+                .catch(error => console.error('Errore nel caricamento del footer:', error));
+
+            // Funzione per inizializzare l'header dopo il caricamento
+            function initializeHeader() {
+                const header = document.getElementById('header');
+                const logo = document.getElementById('logo');
+                const logoInvert = document.getElementById('logo-invert');
+                const fixedBackground = document.getElementById('fixed-background');
+                const hamburgerMenu = document.getElementById('hamburger-menu');
+                const nav = document.getElementById('nav');
+
+                if (hamburgerMenu && nav) {
+                    hamburgerMenu.addEventListener('click', function() {
+                        nav.classList.toggle('active');
+                    });
+                } else {
+                    console.error('Elementi hamburger-menu o nav non trovati nel DOM.');
+                }
+
+                window.addEventListener('scroll', () => {
+                    const currentScrollY = window.scrollY;
+                    const newHeight = Math.max(70, 125 - currentScrollY);
+                    header.style.height = newHeight + 'px';
+
+                    const headerRect = header.getBoundingClientRect();
+
+                    if (headerRect.bottom <= 71) {
+                        fixedBackground.style.visibility = 'visible';
+                        logoInvert.style.clipPath = 'inset(0 0 0 0)';
+                    } else {
+                        fixedBackground.style.visibility = 'hidden';
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="header.js"></script> <!-- Aggiungi questa linea per includere il file hamburger.js -->
+</body>
+</html>
