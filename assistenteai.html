@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/logoXS.png">
+    <title>Esempi di Utilizzo - Ryot Systems</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .logo {
+            filter: invert(1);
+        }
+        .content {
+            margin-top: 130px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex: 1;
+        }
+        .video-container video {
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .catchy-phrase {
+            text-align: left;
+            font-size: 32px;
+            padding: 25px;
+            background-color: #252525;
+            margin-top: 20px;
+            flex: 1;
+        }
+        .titolo {
+            text-align: center;
+            font-size: 40px;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+        .sticky-container {
+            position: relative;
+            width: 100%;
+            height: 210vh;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .macchie-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .sticky-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 210vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .image-stack {
+            position: sticky;
+            top: calc(50vh - 32.5vh);
+            width: 90%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-stack img {
+            position: absolute;
+            max-width: 400px;
+            transition: opacity 0.5s ease-out;
+            height: 80vh;
+        }
+        .image-stack img.hidden {
+            opacity: 0;
+        }
+        .small-image {
+            position: absolute;
+            max-width: 50px;
+            transition: opacity 0.5s ease-out;
+            margin-top: 40px;
+        }
+        .small-image.instagram {
+            top: 17%;
+            right: 25%;
+        }
+        .small-image.whatsapp {
+            top: 43%;
+            right: 25%;
+        }
+        .small-image.messenger {
+            top: 70%;
+            right: 25%;
+        }
+        .macchia {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            will-change: transform;
+            filter: blur(5px);
+        }
+        .desktop-text {
+            display: none;
+            font-size: 40px;
+            color: white;
+            margin-top: 50px;
+        }
+        .frasefinale {
+            font-size: 40px;
+            color: white;
+            margin-top: 50px;
+            text-align: center;
+            padding: 15px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #252525;
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border: 2px solid #397fff;  /* Aggiunto il bordo */
+        }
+
+.contact-button:hover {
+    background-color: #3a3a3a;
+    border-color: #2563cc;  /* Colore del bordo leggermente più scuro al passaggio del mouse */
+}
+
+.contact-button:hover {
+    background-color: #3a3a3a;
+}
+
+
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @media (max-width: 768px) {
+            .catchy-phrase {
+                font-size: 24px;
+                text-align: center;
+            }
+            .frasefinale {
+                font-size: 30px;
+            }
+            .image-stack {
+                height: 80vh;
+                top: 90px;
+            }
+            .image-stack img {
+                margin-right: 35px;
+            }
+            .video-container, .catchy-phrase {
+                flex-direction: column;
+                text-align: center;
+            }
+            .small-image.instagram {
+            right: 5%;
+        }
+            .small-image.small-image.whatsapp {
+            right: 5%;
+        }
+            .small-image.small-image.small-image.messenger {
+            right: 5%;
+        }        
+        .contact-button {
+            font-size: 20px;
+
+        }
+        }
+        @media (min-width: 769px) {
+            .video-and-phrase-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 0%;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+            .catchy-phrase {
+                text-align: left;
+                padding-left: 20px;
+            }
+            .video-container {
+                flex: 1;
+                max-width: 600px;
+            }
+            .catchy-phrase {
+                flex: 1.2;
+                max-width: 600px;
+                background-color: #121212;
+            }
+            .image-stack {
+                top: calc(5vh);
+            }
+            .small-image {
+                max-width: 100px;
+            }            .desktop-text {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <div class="content">
+        <div class="titolo">
+            Scopri il nostro assistente virtuale
+        </div>
+        <div class="video-and-phrase-container">
+            <div class="video-container">
+                <video autoplay muted loop>
+                    <source src="/video/video assistente.mp4" type="video/mp4">
+                    Il tuo browser non supporta i video HTML5.
+                </video>
+            </div>
+
+            <div class="catchy-phrase">
+                Il futuro delle prenotazioni è qui:<br>risposte rapide e personalizzate su WhatsApp, Instagram e Facebook
+            </div>
+        </div>
+
+        <div class="desktop-text">
+            Funziona sulle app preferite dai tuoi clienti:
+        </div>         
+        <div class="sticky-container">
+         
+            <div class="macchie-container"></div>
+
+            <div class="sticky-content">
+                <div class="image-stack">
+                    <img src="/images/chatIphone1.png" alt="Chat iPhone 1" id="image1">
+                    <img src="/images/chatIphone2.png" alt="Chat iPhone 2" id="image2">
+                    <img src="/images/chatIphone3.png" alt="Chat iPhone 3" id="image3">
+                </div>
+                <img src="/icons/instagram.png" alt="Instagram" class="small-image instagram">
+                <img src="/icons/whatsapp.png" alt="WhatsApp" class="small-image whatsapp">
+                <img src="/icons/messenger.png" alt="Messenger" class="small-image messenger">
+            </div>
+        </div>
+    </div>
+    <div class="frasefinale">
+        Contattaci per organizzare una dimostrazione
+    </div>
+    <div class="button-container">
+        <a href="/contatti.html" class="contact-button">Contattaci</a>
+    </div>
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    const headerStyle = document.createElement('link');
+                    headerStyle.rel = 'stylesheet';
+                    headerStyle.href = 'header.css';
+                    document.head.appendChild(headerStyle);
+                    initializeHeader();
+                })
+                .catch(error => console.error('Errore nel caricamento dell\'header:', error));
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                    const footerStyle = document.createElement('link');
+                    footerStyle.rel = 'stylesheet';
+                    footerStyle.href = 'footer.css';
+                    document.head.appendChild(footerStyle);
+                })
+                .catch(error => console.error('Errore nel caricamento del footer:', error));
+
+            const images = [document.getElementById('image3'), document.getElementById('image2'), document.getElementById('image1')];
+            const stickyContainer = document.querySelector('.sticky-container');
+            const macchieContainer = document.querySelector('.macchie-container');
+            const floatingImages = ['macchia1.png', 'macchia2.png', 'macchia3.png', 'macchia4.png', 'macchia5.png', 'macchia6.png','macchia1.png', 'macchia2.png', 'macchia3.png', 'macchia4.png', 'macchia5.png', 'macchia6.png',];
+
+            window.addEventListener('scroll', () => {
+                const scrollPos = window.scrollY;
+                const containerTop = stickyContainer.offsetTop;
+                const containerHeight = stickyContainer.offsetHeight;
+                const scrollProgress = (scrollPos - containerTop) / (containerHeight - window.innerHeight);
+
+                if (scrollProgress > 0.33) {
+                    images[0].classList.add('hidden');
+                } else {
+                    images[0].classList.remove('hidden');
+                }
+
+                if (scrollProgress > 0.66) {
+                    images[1].classList.add('hidden');
+                } else {
+                    images[1].classList.remove('hidden');
+                }
+
+                // Cambio della rotazione hue delle macchie
+                const hueRotation = scrollProgress <= 0.33 ? 160 :
+                                    scrollProgress <= 0.66 ? 0 : 120;
+                macchieContainer.style.filter = `hue-rotate(${hueRotation}deg)`;
+            });
+
+            floatingImages.forEach((src) => {
+                const img = document.createElement('div');
+                img.classList.add('macchia');
+                img.style.backgroundImage = `url(${src})`;
+
+                const size = 150 + Math.random() * 200;
+                img.style.width = `${size}px`;
+                img.style.height = `${size}px`;
+
+                img.style.top = `${Math.random() * (macchieContainer.clientHeight - size)}px`;
+                img.style.left = `${Math.random() * (macchieContainer.clientWidth - size)}px`;
+                img.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                img.style.animation = `rotate ${60 + Math.random() * 20}s linear infinite`;
+                macchieContainer.appendChild(img);
+
+                moveElement(img, size);
+            });
+
+            function moveElement(element, size) {
+                const speed = 0.1 + Math.random() * 0.15; 
+                let directionX = Math.random() < 0.5 ? -1 : 1;
+                let directionY = Math.random() < 0.5 ? -1 : 1;
+
+                function animate() {
+                    const containerWidth = macchieContainer.clientWidth;
+                    const containerHeight = macchieContainer.clientHeight;
+                    let x = parseFloat(element.style.left, 10);
+                    let y = parseFloat(element.style.top, 10);
+
+                    if (x <= 0) {
+                        directionX = 1;
+                    } else if (x + size >= containerWidth) {
+                        directionX = -1;
+                    }
+
+                    if (y <= 0) {
+                        directionY = 1;
+                    } else if (y + size >= containerHeight) {
+                        directionY = -1;
+                    }
+
+                    element.style.left = `${x + directionX * speed}px`;
+                    element.style.top = `${y + directionY * speed}px`;
+
+                    requestAnimationFrame(animate);
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            function initializeHeader() {
+            const header = document.getElementById('header');
+            const logo = document.getElementById('logo');
+            const logoInvert = document.getElementById('logo-invert');
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const nav = document.getElementById('nav');
+            const overlay = document.getElementById('overlay');
+
+            if (hamburgerMenu && nav && overlay) {
+                hamburgerMenu.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                    overlay.style.display = nav.classList.contains('active') ? 'block' : 'none';
+                });
+
+                overlay.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    overlay.style.display = 'none';
+                });
+            } else {
+                console.error('Elementi hamburger-menu, nav, o overlay non trovati nel DOM.');
+            }
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                const newHeight = Math.max(70, 125 - currentScrollY);
+                header.style.height = newHeight + 'px';
+            });
+        }
+    });
+    </script>
+</body>
+</html>

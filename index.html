@@ -402,7 +402,7 @@
             <div class="carousel-container">
                 <button class="carousel-button prev" onclick="scrollCarousel(-1)">&#10094;</button>
                 <div class="carousel" id="carousel">
-                    <div class="carousel-item" onclick="window.location.href='#'"><img src="/carosello/1.png" alt="Immagine 1"></div>
+                    <div class="carousel-item" onclick="window.location.href='/assistenteai.html'"><img src="/carosello/1.png" alt="Immagine 1"></div>
                     <div class="carousel-item" onclick="window.location.href='#'"><img src="/carosello/2.png" alt="Immagine 2"></div>
                     <div class="carousel-item" onclick="window.location.href='#'"><img src="/carosello/3.png" alt="Immagine 3"></div>
                 </div>
@@ -440,11 +440,11 @@
                     headerStyle.rel = 'stylesheet';
                     headerStyle.href = 'header.css';
                     document.head.appendChild(headerStyle);
-
+    
                     initializeHeader();
                 })
                 .catch(error => console.error('Errore nel caricamento dell\'header:', error));
-
+    
             fetch('footer.html')
                 .then(response => response.text())
                 .then(data => {
@@ -456,7 +456,7 @@
                     document.head.appendChild(footerStyle);
                 })
                 .catch(error => console.error('Errore nel caricamento del footer:', error));
-
+    
             // Funzioni di inizializzazione
             function initializeHeader() {
                 const header = document.getElementById('header');
@@ -470,12 +470,12 @@
                 let autoScrollInterval;
                 let autoScrollTimeout;
                 let isScrolling = false;
-
+    
                 function scrollCarousel(direction) {
                     const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
                     const scrollAmount = direction === 1 ? carousel.scrollWidth - carousel.clientWidth : 0;
                     let scrollPos = direction === 1 ? 0 : carousel.scrollWidth - carousel.clientWidth;
-
+    
                     function scroll() {
                         if (direction === 1 && scrollPos < scrollAmount) {
                             scrollPos += itemWidth;
@@ -487,22 +487,26 @@
                             requestAnimationFrame(scroll);
                         }
                     }
-
+    
                     scroll();
                 }
-
-
-
+    
                 const hamburgerMenu = document.getElementById('hamburger-menu');
                 const nav = document.getElementById('nav');
-
+                const overlay = document.createElement('div');
+                overlay.id = 'overlay';
+                document.body.appendChild(overlay);
+    
                 hamburgerMenu.addEventListener('click', function() {
                     nav.classList.toggle('active');
+                    overlay.style.display = nav.classList.contains('active') ? 'block' : 'none';
                 });
-
-
-
-
+    
+                overlay.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    overlay.style.display = 'none';
+                });
+    
                 function cloneFirstToEnd(container) {
                     const firstChild = container.children[0];
                     const clone = firstChild.cloneNode(true);
@@ -510,14 +514,14 @@
                     container.removeChild(firstChild);
                     container.scrollBy({ left: -firstChild.offsetWidth, behavior: 'instant' });
                 }
-
+    
                 function scrollSmallCarousel(direction) {
                     if (isScrolling) return;
                     isScrolling = true;
-
+    
                     const itemWidth = smallCarousel.querySelector('.small-carousel-item').offsetWidth;
                     smallCarousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
-
+    
                     setTimeout(() => {
                         if (direction === 1) {
                             cloneFirstToEnd(smallCarousel);
@@ -531,41 +535,41 @@
                         isScrolling = false;
                     }, 600);
                 }
-
+    
                 function autoScrollSmallCarousel() {
                     scrollSmallCarousel(1);
                 }
-
+    
                 function startAutoScroll() {
                     autoScrollInterval = setInterval(autoScrollSmallCarousel, 3000);
                 }
-
+    
                 function stopAutoScroll() {
                     clearInterval(autoScrollInterval);
                 }
-
+    
                 function resetAutoScroll() {
                     stopAutoScroll();
                     clearTimeout(autoScrollTimeout);
                     autoScrollTimeout = setTimeout(startAutoScroll, 8000);
                 }
-
+    
                 function manualScrollSmallCarousel(direction) {
                     stopAutoScroll();
                     scrollSmallCarousel(direction);
                     resetAutoScroll();
                 }
-
+    
                 startAutoScroll();
-
+    
                 window.addEventListener('scroll', () => {
                     const currentScrollY = window.scrollY;
                     const newHeight = Math.max(70, 125 - currentScrollY);
                     header.style.height = newHeight + 'px';
-
+    
                     const headerRect = header.getBoundingClientRect();
                     const testataRect = testata.getBoundingClientRect();
-
+    
                     if (headerRect.bottom > testataRect.top && headerRect.top < testataRect.bottom) {
                         const overlapTop = Math.max(0, testataRect.top - headerRect.top);
                         const overlapBottom = Math.max(0, headerRect.bottom - testataRect.bottom);
@@ -573,7 +577,7 @@
                     } else if (testataRect.bottom > 71) {
                         logoInvert.style.clipPath = 'inset(0 0 100% 0)';
                     }
-
+    
                     if (testataRect.bottom <= 71) {
                         fixedBackground.style.visibility = 'visible';
                         logoInvert.style.clipPath = 'inset(0 0 0 0)';
@@ -581,38 +585,38 @@
                         fixedBackground.style.visibility = 'hidden';
                     }
                 });
-
+    
                 document.querySelector('.carousel-button.prev').addEventListener('click', () => {
                     scrollCarousel(-1);
                 });
-
+    
                 document.querySelector('.carousel-button.next').addEventListener('click', () => {
                     scrollCarousel(1);
                 });
-
+    
                 document.querySelector('.small-carousel-button.prev').addEventListener('click', () => {
                     manualScrollSmallCarousel(-1);
                 });
-
+    
                 document.querySelector('.small-carousel-button.next').addEventListener('click', () => {
                     manualScrollSmallCarousel(1);
                 });
-
+    
                 var span = document.querySelector('span[data-rotate-words]');
                 var words = span.getAttribute('data-rotate-words').split(', ');
                 var currentWordIndex = 0;
                 var currentLetterIndex = 0;
                 var interval;
-
+    
                 function rotateWords() {
                     var currentWord = words[currentWordIndex];
                     var currentLetter = currentWord[currentLetterIndex];
                     var text = currentWord.substring(0, currentLetterIndex + 1);
-
+    
                     span.innerHTML = text + '<span class="cursor">|</span>';
-
+    
                     currentLetterIndex++;
-
+    
                     if (currentLetterIndex === currentWord.length) {
                         clearInterval(interval);
                         setTimeout(function() {
@@ -620,28 +624,25 @@
                         }, 500);
                     }
                 }
-
+    
                 function deleteLetter() {
                     var currentWord = words[currentWordIndex];
                     var text = currentWord.substring(0, currentLetterIndex);
-
+    
                     span.innerHTML = text + '<span class="cursor">|</span>';
-
+    
                     currentLetterIndex--;
-
+    
                     if (currentLetterIndex < 0) {
                         clearInterval(interval);
                         currentWordIndex = (currentWordIndex + 1) % words.length;
                         interval = setInterval(rotateWords, 130);
                     }
                 }
-
+    
                 interval = setInterval(rotateWords, 100);
             }
-
-            
         });
-
     </script>
 </body>
 </html>

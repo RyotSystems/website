@@ -109,40 +109,35 @@
                 })
                 .catch(error => console.error('Errore nel caricamento del footer:', error));
 
-            // Funzione per inizializzare l'header dopo il caricamento
-            function initializeHeader() {
+                function initializeHeader() {
                 const header = document.getElementById('header');
                 const logo = document.getElementById('logo');
                 const logoInvert = document.getElementById('logo-invert');
-                const fixedBackground = document.getElementById('fixed-background');
                 const hamburgerMenu = document.getElementById('hamburger-menu');
                 const nav = document.getElementById('nav');
+                const overlay = document.getElementById('overlay');
 
-                if (hamburgerMenu && nav) {
+                if (hamburgerMenu && nav && overlay) {
                     hamburgerMenu.addEventListener('click', function() {
                         nav.classList.toggle('active');
+                        overlay.style.display = nav.classList.contains('active') ? 'block' : 'none';
+                    });
+
+                    overlay.addEventListener('click', function() {
+                        nav.classList.remove('active');
+                        overlay.style.display = 'none';
                     });
                 } else {
-                    console.error('Elementi hamburger-menu o nav non trovati nel DOM.');
+                    console.error('Elementi hamburger-menu, nav, o overlay non trovati nel DOM.');
                 }
 
                 window.addEventListener('scroll', () => {
                     const currentScrollY = window.scrollY;
                     const newHeight = Math.max(70, 125 - currentScrollY);
                     header.style.height = newHeight + 'px';
-
-                    const headerRect = header.getBoundingClientRect();
-
-                    if (headerRect.bottom <= 71) {
-                        fixedBackground.style.visibility = 'visible';
-                        logoInvert.style.clipPath = 'inset(0 0 0 0)';
-                    } else {
-                        fixedBackground.style.visibility = 'hidden';
-                    }
                 });
             }
         });
     </script>
-    <script src="header.js"></script> <!-- Aggiungi questa linea per includere il file hamburger.js -->
 </body>
 </html>
